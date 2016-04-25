@@ -6,6 +6,9 @@ API on a network interface/port. This version was mostly tested with a web brows
 Hopefully it works for other people (POST, socket/websocket,...) but *this has not been tested*. The added timeouts/disconnects will most
 likely mess with things, as it now behaves more strictly as a HTTP/1.0 proxy, disconnecting clients after responses from the upstream.
 
+Why?
+---
+
 I've created this fork to fix some issues with the original code:
 
 1. Better handling of EOF/timeouts (front and back-end connections)
@@ -16,6 +19,10 @@ I've created this fork to fix some issues with the original code:
 And introduced some new issues:
 
 1. Due to the timeouts some API endpoints (websocket, itd) will not be functional. Submit a PR if you need it.
+
+The project is meant to be used in conjunction with [docker-proxy-acl](https://github.com/titpetric/docker-proxy-acl), that creates a proxy
+via a socket file - this proxy only limits requests to what you specify with command line options. This way you can securely expose a
+subset of the Docker API via HTTP.
 
 Running with docker
 -------------------
