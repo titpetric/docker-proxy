@@ -1,0 +1,3 @@
+#!/bin/bash
+ARGS=$(cat docker.args | xargs echo -n)
+docker run $ARGS --rm=true -it -v `pwd`:/go -w /go golang go run docker-proxy.go "$@"
